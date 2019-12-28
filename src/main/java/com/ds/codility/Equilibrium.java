@@ -2,6 +2,10 @@ package com.ds.codility;
 
 import java.util.stream.IntStream;
 
+/**
+ * @author Sarvesh Dubey
+ *
+ */
 public class Equilibrium {
 
     /**

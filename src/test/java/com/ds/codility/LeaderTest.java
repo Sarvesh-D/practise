@@ -3,17 +3,21 @@
  */
 package com.ds.codility;
 
+import static com.ds.codility.TestUtils.randomIntArr;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Random;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
 
+/**
+ * @author Sarvesh Dubey
+ *
+ */
 public class LeaderTest {
 
     @Test
@@ -63,7 +67,7 @@ public class LeaderTest {
     public void should_return_leader_from_random_arr() {
         IntStream.rangeClosed(800, 9900)
                  .forEach(i -> {
-                     int[] ints = randomSortedIntArr(i);
+                     int[] ints = randomIntArr(i);
                      Map<Integer, Long> stats = Arrays.stream(ints)
                                                       .boxed()
                                                       .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
@@ -76,12 +80,6 @@ public class LeaderTest {
                      assertThat(leader).isEqualTo(Leader.findLeader(ints));
 
                  });
-    }
-
-    private static int[] randomSortedIntArr(int size) {
-        return new Random().ints(size, 35, 37)
-                           .sorted()
-                           .toArray();
     }
 
 }
