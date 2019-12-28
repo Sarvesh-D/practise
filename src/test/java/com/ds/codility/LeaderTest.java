@@ -63,7 +63,7 @@ public class LeaderTest {
 
     }
 
-    @Test
+    // @Test
     public void should_return_leader_from_random_arr() {
         IntStream.rangeClosed(800, 9900)
                  .forEach(i -> {
