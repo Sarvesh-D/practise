@@ -9,8 +9,8 @@ jdk: oraclejdk8
 
 script:
   - ./gradlew clean build
-  - ./gradlew check
-  - ./gradlew codeCoverageReport
+  - ./gradlew clean check
+  - ./gradlew clean codeCoverageReport
   
 after_success:
   - bash <(curl -s https://codecov.io/bash)
