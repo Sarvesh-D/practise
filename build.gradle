@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
+    id "jacoco"
 }
 
 repositories {
@@ -28,4 +29,23 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.14.0'
     
+}
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
+}
+
+codeCoverageReport.dependsOn {
+    subprojects*.test
 }
