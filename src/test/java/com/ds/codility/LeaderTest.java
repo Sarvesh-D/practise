@@ -14,8 +14,6 @@ import java.util.stream.IntStream;
 
 import org.junit.Test;
 
-import com.ds.codility.Leader;
-
 public class LeaderTest {
 
     @Test
@@ -69,14 +67,12 @@ public class LeaderTest {
                      Map<Integer, Long> stats = Arrays.stream(ints)
                                                       .boxed()
                                                       .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-                     System.out.println(stats);
                      int leader = stats.entrySet()
                                        .stream()
                                        .filter(e -> e.getValue() > ints.length / 2)
                                        .map(Map.Entry::getKey)
                                        .findFirst()
                                        .orElse(-1);
-                     System.out.println("Leader from Stats = " + leader);
                      assertThat(leader).isEqualTo(Leader.findLeader(ints));
 
                  });
