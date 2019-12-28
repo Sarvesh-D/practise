@@ -4,13 +4,11 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Random;
 
-import org.junit.Test;
-
 public class EquilibriumTest {
 
     int[] largeInput = randomIntArr(10000 ^ 2);
 
-    @Test
+    // @Test
     public void largeInputsApproach1() {
         Instant start = Instant.now();
         System.out.println("Equilibrium Approach 1 = " + Equilibrium.findEquilibrium(largeInput));
