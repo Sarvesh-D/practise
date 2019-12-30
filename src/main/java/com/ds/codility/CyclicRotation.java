@@ -27,4 +27,21 @@ public class CyclicRotation {
         return rotatedArr;
     }
 
+    public static int[] cyclicRotate2(int[] A, int K) {
+        int length = A.length;
+        if (length == 0)
+            return A;
+        int distinctRotations = K % length;
+        if (distinctRotations == 0)
+            return A;
+        int[] rotatedArr = new int[length];
+        for (int i = 0; i + distinctRotations < rotatedArr.length; i++) {
+            rotatedArr[i + distinctRotations] = A[i];
+        }
+        for (int i = 0; i < distinctRotations; i++) {
+            rotatedArr[i] = A[length - distinctRotations + i];
+        }
+        return rotatedArr;
+    }
+
 }
