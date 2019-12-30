@@ -41,6 +41,55 @@ public class Sorting {
         return A;
     }
 
+    public static int[] insertionSort(int[] A) {
+        for (int i = 1; i < A.length; i++) {
+            int currentVal = A[i];
+            int insertPos = i;
+            while (insertPos > 0 && A[insertPos - 1] > currentVal) {
+                A[insertPos] = A[insertPos - 1];
+                insertPos--;
+            }
+            A[insertPos] = currentVal;
+        }
+        return A;
+    }
+
+    public static int[] mergeSort(int[] A) {
+        int size = A.length;
+        if (size < 2)
+            return A;
+        int mid = size / 2;
+        int[] left = new int[mid];
+        int[] right = new int[size - mid];
+        for (int i = 0; i < left.length; i++)
+            left[i] = A[i];
+        for (int i = mid; i < size; i++)
+            right[i - mid] = A[i];
+        mergeSort(left);
+        mergeSort(right);
+        merge(left, right, A);
+        return A;
+    }
+
+    private static int[] merge(int[] left, int[] right, int[] accumulator) {
+        int lSize = left.length;
+        int rSize = right.length;
+        int lSelected = 0;
+        int rSelected = 0;
+        int accumulated = 0;
+        while (lSelected < lSize && rSelected < rSize) {
+            if (left[lSelected] <= right[rSelected])
+                accumulator[accumulated++] = left[lSelected++];
+            else
+                accumulator[accumulated++] = right[rSelected++];
+        }
+        while (lSelected < lSize)
+            accumulator[accumulated++] = left[lSelected++];
+        while (rSelected < rSize)
+            accumulator[accumulated++] = right[rSelected++];
+        return accumulator;
+    }
+
     private static void swap(int[] a, int i, int j) {
         int temp = a[i];
         a[i] = a[j];

@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class SortingTest {
 
-    private static int[] A = TestUtils.randomIntArr(10000 ^ 2, -1000, 60000, false);
+    private static int[] A = TestUtils.randomIntArr(100000 ^ 2, -1000, 60000, false);
 
     private int[] ints;
 
@@ -34,6 +34,21 @@ public class SortingTest {
         int[] sorted = A.clone();
         Arrays.sort(sorted);
         assertThat(sorted).containsExactly(Sorting.bubbleSort(ints));
+        assertThat(sorted).containsExactly(Sorting.bubbleSort(sorted));
+    }
+
+    @Test
+    public void testInsertionSort() {
+        int[] sorted = A.clone();
+        Arrays.sort(sorted);
+        assertThat(sorted).containsExactly(Sorting.insertionSort(ints));
+    }
+
+    @Test
+    public void testMergeSort() {
+        int[] sorted = A.clone();
+        Arrays.sort(sorted);
+        assertThat(sorted).containsExactly(Sorting.mergeSort(ints));
     }
 
 }
