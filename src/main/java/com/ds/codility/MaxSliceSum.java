@@ -1,13 +1,16 @@
 package com.ds.codility;
 
-
+/**
+ * @author Sarvesh Dubey
+ *
+ */
 public class MaxSliceSum {
 
     /**
-     * Given an array of integers, returns sum of sub array (continuous array) such that the sum is greater than any
-     * other sub array.<br>
-     * Example:<br<> input = [3,-2,5,1,6,-5] should result in 13 which is max possible sum obtained by sub array
-     * [3,-2,5,1,6].
+     * Given an array of integers, returns sum of sub array (continuous array) such
+     * that the sum is greater than any other sub array.<br>
+     * Example:<br<> input = [3,-2,5,1,6,-5] should result in 13 which is max
+     * possible sum obtained by sub array [3,-2,5,1,6].
      * 
      * @param A
      *            input array
