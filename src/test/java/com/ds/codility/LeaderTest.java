@@ -32,7 +32,7 @@ public class LeaderTest {
 
     @Test
     public void should_return_leader_from_right_half_of_array() {
-        int[] sample_1 = new int[] { 1, 1, 4, 4, 4 };
+        int[] sample_1 = new int[] { 4, 1, 1, 4, 4 };
         int[] sample_2 = new int[] { 1, 1, 5, 5, 5, 5 };
         assertThat(Leader.findLeader(sample_1)).isEqualTo(4);
         assertThat(Leader.findLeader(sample_2)).isEqualTo(5);
