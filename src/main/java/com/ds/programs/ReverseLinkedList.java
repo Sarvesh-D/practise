@@ -22,11 +22,4 @@ public class ReverseLinkedList {
             output.add(inputS.pop());
         return output;
     }
-
-    public <T> MyLinkedList<T> solution(MyLinkedList<T> input) {
-        MyLinkedList<T> output = new MyLinkedList<>(input.tail());
-
-        return output;
-    }
-
 }
