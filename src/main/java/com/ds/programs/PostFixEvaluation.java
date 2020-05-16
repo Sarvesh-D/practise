@@ -8,6 +8,7 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -24,47 +25,53 @@ public class PostFixEvaluation {
         String[] postfix = expression.split(" ");
         Stack<Double> operators = new Stack<>();
         for (String s : postfix) {
-            if (Operands.isValidOperand(s)) {
+            if (Operator.isValidOperator(s)) {
                 Double op2 = operators.pop();
                 Double op1 = operators.pop();
-                operators.push(Operands.valueOf(s.toCharArray()[0])
+                operators.push(Operator.valueOf(s.toCharArray()[0])
                                        .apply(op1, op2));
             } else {
                 operators.push(Double.valueOf(s));
             }
         }
-        System.out.println("= "+operators.peek());
+        System.out.println("= " + operators.peek());
         return operators.pop();
     }
 
     @RequiredArgsConstructor
-    static enum Operands {
+    static enum Operator {
 
-        ADD('+', (i, j) -> Double.valueOf(i + j)),
-        SUBTRACT('-', (i, j) -> Double.valueOf(i - j)),
+        EXPONENT('^', (i, j) -> Double.valueOf(i.intValue() ^ j.intValue())),
         MULTIPLY('*', (i, j) -> Double.valueOf(i * j)),
         DIVIDE('/', (i, j) -> Double.valueOf(i / j)),
-        EXPONENT('^', (i, j) -> Double.valueOf(i.intValue() ^ j.intValue()));
+        ADD('+', (i, j) -> Double.valueOf(i + j)),
+        SUBTRACT('-', (i, j) -> Double.valueOf(i - j));
 
-        private final char operand;
+        @Getter
+        private final char operator;
 
         private final BiFunction<Double, Double, Double> func;
 
-        private static final Map<Character, Operands> operandsMap = Arrays.stream(Operands.values())
-                                                                          .collect(Collectors.toMap(operands -> operands.operand, Function.identity()));
+        private static final Map<Character, Operator> operatorsMap = Arrays.stream(Operator.values())
+                                                                           .collect(Collectors.toMap(operands -> operands.operator, Function.identity()));
 
         public Double apply(double i, double j) {
-            System.out.println(String.format(">> %s %s %s", i, operand, j));
+            System.out.println(String.format(">> %s %s %s", i, operator, j));
             return func.apply(i, j);
         }
 
-        public static Operands valueOf(char c) {
-            return operandsMap.get(c);
+        public static Operator valueOf(char c) {
+            return operatorsMap.get(c);
         }
 
-        public static boolean isValidOperand(String s) {
-            return operandsMap.containsKey(s.toCharArray()[0]);
+        public static boolean isValidOperator(String s) {
+            return operatorsMap.containsKey(s.toCharArray()[0]);
         }
+
+        public int compareWith(Operator o) {
+            return Integer.compare(o.ordinal(), this.ordinal());
+        }
+
     }
 
 }
