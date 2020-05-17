@@ -1,10 +1,6 @@
 
 package com.ds.programs;
 
-import com.ds.datastructures.MyLinkedList;
-import com.ds.datastructures.MyStack;
-import sun.awt.image.ImageWatched;
-
 import java.util.LinkedList;
 import java.util.Stack;
 

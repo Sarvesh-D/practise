@@ -9,7 +9,6 @@ import java.util.StringJoiner;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Custom implementation of {@link java.util.LinkedList}.
@@ -141,7 +140,7 @@ public class MyLinkedList<T> {
      * @implNote The mid is calculated by dividing the {@link MyLinkedList#asList()} by 2.
      */
     public T mid() {
-        throw new NotImplementedException();
+        throw new RuntimeException("Not Implemented");
     }
 
     /**

@@ -2,6 +2,8 @@ package com.ds.datastructs;
 
 import org.junit.Test;
 
+import com.ds.datastructures.BinaryTree;
+
 public class BinaryTreeTest {
 
     @Test
