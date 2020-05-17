@@ -3,8 +3,6 @@
  */
 package com.ds.codility;
 
-import java.util.stream.IntStream;
-
 /**
  * @author Sarvesh Dubey
  *
@@ -18,23 +16,40 @@ public class Leader {
      * Example 2: If array is [1,2,2,3], then there is no leader, or the leader is
      * -1 <br>
      * 
-     * @param ints
+     * @param A
      *            Integer array
      * @return the leader element if present else -1
      */
-    public static int findLeader(int[] ints) {
-        final int defaultLeader = -1;
-        if (ints.length == 0)
-            return defaultLeader;
-        if (ints.length == 1)
-            return ints[0];
-        int halfway = ints.length / 2;
-        int iterations = ints.length % 2 == 0 ? halfway - 1 : halfway;
-        return IntStream.rangeClosed(0, iterations)
-                        .filter(i -> ints[i] == ints[i + halfway])
-                        .map(i -> ints[i])
-                        .findFirst()
-                        .orElse(defaultLeader);
+    public static int findLeader(int[] A) {
+        if (A.length == 0)
+            return -1;
+        if (A.length == 1)
+            return A[0];
+        int candidate = 0;
+        int count = 0;
+        for (int i : A) {
+            if (count == 0) {
+                candidate = i;
+                count++;
+            } else if (candidate == i) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+        return count > A.length / 2 ? candidate : -1;
+    }
+
+    public static int findLeader1(int[] A) {
+        int[] counts = new int[100000];
+        for (int i : A) {
+            counts[i] = counts[i] + 1;
+        }
+        for (int j = 0; j < counts.length; j++) {
+            if (counts[j] > A.length / 2)
+                return j;
+        }
+        return -1;
 
     }
 }

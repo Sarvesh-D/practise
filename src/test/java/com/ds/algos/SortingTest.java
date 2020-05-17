@@ -16,7 +16,7 @@ import com.ds.codility.TestUtils;
  */
 public class SortingTest {
 
-    private static int[] A = TestUtils.randomIntArr(100000 ^ 2, -1000, 60000, false);
+    private static int[] A = TestUtils.randomIntArr(100 ^ 2, -1000, 60000, false);
 
     private int[] ints;
 
