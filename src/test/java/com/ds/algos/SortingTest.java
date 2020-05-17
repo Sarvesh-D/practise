@@ -1,4 +1,4 @@
-package com.ds.codility;
+package com.ds.algos;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -6,6 +6,9 @@ import java.util.Arrays;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.ds.algos.Sorting;
+import com.ds.codility.TestUtils;
 
 /**
  * @author Sarvesh Dubey

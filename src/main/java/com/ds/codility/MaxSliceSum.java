@@ -19,17 +19,9 @@ public class MaxSliceSum {
     public static int maxSliceSum(int[] A) {
         int globalMax = A[0];
         int localMax = globalMax;
-
         for (int i = 1; i < A.length; i++) {
-            if (A[i] <= localMax + A[i]) {
-                localMax += A[i];
-            } else {
-                localMax = A[i];
-            }
-            if (localMax > globalMax) {
-                globalMax = localMax;
-            }
-
+            localMax = Math.max(A[i], localMax + A[i]);
+            globalMax = Math.max(localMax, globalMax);
         }
         return globalMax;
     }

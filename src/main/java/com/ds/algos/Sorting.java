@@ -1,4 +1,4 @@
-package com.ds.codility;
+package com.ds.algos;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
