@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
 
@@ -54,5 +55,43 @@ public class BinaryTreeTest {
         assertThat(ints.search(10)).isEmpty();
         assertThat(ints.search(11)).isEmpty();
         ints.print();
+    }
+
+    @Test
+    public void max() {
+        BinaryTree<Integer> ints = new BinaryTree<>(5).insert(3)
+                                                      .insert(5)
+                                                      .insert(2)
+                                                      .insert(10)
+                                                      .insert(11);
+        assertThat(ints.max()).isNotEmpty()
+                              .get()
+                              .isEqualTo(11);
+    }
+
+    @Test
+    public void min() {
+        BinaryTree<Integer> ints = new BinaryTree<>(5).insert(3)
+                                                      .insert(5)
+                                                      .insert(2)
+                                                      .insert(10)
+                                                      .insert(11);
+        assertThat(ints.min()).isNotEmpty()
+                              .get()
+                              .isEqualTo(2);
+    }
+
+    @Test
+    public void height() {
+        BinaryTree<Integer> ints = new BinaryTree<>(5).insert(3)
+                                                      .insert(5)
+                                                      .insert(2)
+                                                      .insert(10)
+                                                      .insert(11);
+        ints.print();
+        assertThat(ints.height()).isEqualTo(2);
+        assertThat(ints.search(11)
+                       .get()
+                       .height()).isEqualTo(0);
     }
 }

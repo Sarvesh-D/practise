@@ -90,20 +90,40 @@ public class BinaryTree<T extends Comparable<T>> {
         return this.rootNode;
     }
 
-    public BinaryTree<T> max() {
-        return null;
+    public Optional<T> max() {
+        return max(rootNode);
     }
 
-    private BinaryTree<T> max(BinaryTree<T> rootNode) {
-        return null;
+    private Optional<T> max(BinaryTree<T> rootNode) {
+        if(null == rootNode)
+            return Optional.empty();
+        else if(null == rootNode.right)
+            return Optional.of(rootNode.data);
+        else
+            return max(rootNode.right);
     }
 
-    public BinaryTree<T> min() {
-        return null;
+    public Optional<T> min() {
+        return min(rootNode);
     }
 
-    public BinaryTree<T> height() {
+    private Optional<T> min(BinaryTree<T> rootNode) {
+        if(null == rootNode)
+            return Optional.empty();
+        else if(null == rootNode.left)
+            return Optional.of(rootNode.data);
+        else
+            return min(rootNode.left);
+    }
 
+    public int height() {
+        return height(rootNode);
+    }
+
+    private int height(BinaryTree<T> rootNode) {
+        if(null == rootNode)
+            return -1;
+        return Math.max(height(rootNode.left), height(rootNode.right)) + 1;
     }
 
     public void print() {
