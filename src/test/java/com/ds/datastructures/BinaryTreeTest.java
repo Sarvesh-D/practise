@@ -94,4 +94,50 @@ public class BinaryTreeTest {
                        .get()
                        .height()).isEqualTo(0);
     }
+
+    @Test
+    public void traverse() {
+        BinaryTree<Integer> ints = new BinaryTree<>(5).insert(3)
+                                                      .insert(5)
+                                                      .insert(2)
+                                                      .insert(10)
+                                                      .insert(11);
+        ints.print();
+        assertThat(ints.traverse(BinaryTree.TraverseMode.LEVEL_ORDER)).containsExactly(5, 3, 10, 2, 5, 11);
+        assertThat(ints.traverse(BinaryTree.TraverseMode.IN_ORDER)).containsExactly(2,3,5,5,10,11);
+        assertThat(ints.traverse(BinaryTree.TraverseMode.PRE_ORDER)).containsExactly(5, 3, 2, 5, 10, 11);
+        //assertThat(ints.traverse(BinaryTree.TraverseMode.POST_ORDER)).containsExactly(2,3);
+
+        System.out.println(ints.traverse(BinaryTree.TraverseMode.LEVEL_ORDER));
+        System.out.println(ints.traverse(BinaryTree.TraverseMode.IN_ORDER));
+        System.out.println(ints.traverse(BinaryTree.TraverseMode.PRE_ORDER));
+        System.out.println(ints.traverse(BinaryTree.TraverseMode.POST_ORDER));
+
+
+    }
+
+    @Test
+    public void delete() {
+        BinaryTree<Integer> ints = new BinaryTree<>(5).insert(3)
+                .insert(4)
+                .insert(2)
+                .insert(10)
+                .insert(11);
+        ints.print();
+        ints.delete(2);
+        assertThat(ints.search(2)).isEmpty();
+        ints.print();
+        ints.insert(2);
+        assertThat(ints.search(2)).isNotEmpty();
+        ints.print();
+        ints.delete(10);
+        assertThat(ints.search(10)).isEmpty();
+        ints.print();
+        ints.insert(10);
+        assertThat(ints.search(10)).isNotEmpty();
+        ints.print();
+        ints.delete(11);
+        assertThat(ints.search(11)).isEmpty();
+        ints.print();
+    }
 }

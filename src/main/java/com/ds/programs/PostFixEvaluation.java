@@ -23,19 +23,19 @@ public class PostFixEvaluation {
      */
     public static Double solution(String expression) {
         String[] postfix = expression.split(" ");
-        Stack<Double> operators = new Stack<>();
+        Stack<Double> currentResult = new Stack<>();
         for (String s : postfix) {
             if (Operator.isValidOperator(s)) {
-                Double op2 = operators.pop();
-                Double op1 = operators.pop();
-                operators.push(Operator.valueOf(s.toCharArray()[0])
-                                       .apply(op1, op2));
+                Double op2 = currentResult.pop();
+                Double op1 = currentResult.pop();
+                currentResult.push(Operator.valueOf(s.toCharArray()[0])
+                                           .apply(op1, op2));
             } else {
-                operators.push(Double.valueOf(s));
+                currentResult.push(Double.valueOf(s));
             }
         }
-        System.out.println("= " + operators.peek());
-        return operators.pop();
+        System.out.println("= " + currentResult.peek());
+        return currentResult.pop();
     }
 
     @RequiredArgsConstructor
